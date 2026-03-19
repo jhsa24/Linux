@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=Dull
+Comment=My custom wordle opener bash script
+Exec=~/bin/dull
+Terminal=true
+Categories=Game;Application;

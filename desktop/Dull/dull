@@ -1,0 +1,49 @@
+#!/usr/bin/bash
+#Script for opening wordle style games from the file "sites.json"
+
+# finds number of games in file
+length=$(jq '.Games' ~/bin/sites.json | jq keys | jq length)
+
+#initialised vairable, this will define the selction menu later
+menu=()
+
+for ((i=0;i<length;i++)); do #iterate through each game
+	append=$(jq '.Games' ~/bin/sites.json | jq -r keys["$i"]) #this finds the game name
+	menu+=("$append" ) #and appends it to our menu variable, with a space
+	description=$(jq '.Games' ~/bin/sites.json | jq -r --arg append "$append" '.[$append][1]')
+	menu+=("$description" ) #ready for the description variable to also be added
+done
+
+#build the menu
+choice=$(zenity --list \
+    --title="Dull Games" \
+    --width=500 \
+    --height=500 \
+    --column="Game Name" \
+    --column="Description" \
+    --text="Choose your weapon from this beautifully little Zenity menu" \
+    --ok-label="I'm feeling lucky" \
+    --cancel-label="Exterminate the program" \
+    "${menu[@]}") #lists all elements of menu in order, and
+# assigns in order row1 column1, row1 column2, row2 column1, etc...
+
+if [ "$?" != 0 ]; then
+	exit
+fi
+
+if [ -n "$choice" ]; then
+	#finds corresponding site for the selected choice
+	echo $choice
+	site=$( jq '.Games' ~/bin/sites.json | jq -r --arg choice "$choice" '.[$choice][0]')
+	#opens the site
+	xdg-open "$site"
+	exit
+fi
+
+num=$(($RANDOM % $length))
+echo $num
+choice=$(jq '.Games' ~/bin/sites.json | jq keys | jq -r ".[$num]")
+echo $choice
+site=$( jq '.Games' ~/bin/sites.json | jq -r --arg choice "$choice" '.[$choice][0]')
+#opens the site
+xdg-open "$site"

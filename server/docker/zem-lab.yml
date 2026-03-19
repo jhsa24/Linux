@@ -1,0 +1,68 @@
+version: "3.8"
+
+services:
+
+  yacht:
+    image: selfhostedpro/yacht:latest
+    container_name: yacht
+    ports:
+      - "8000:8000"
+    volumes:
+      - /home/john/homelab/yacht:/config
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: always
+
+
+  jellyfin:
+    image: jellyfin/jellyfin:latest
+    container_name: jellyfin
+    hostname: Zem-Net
+    ports:
+      - "8090:8096"
+    user: 1000:1000
+    volumes:
+      - /home/john/homelab/jellyfin/config:/config
+      - /home/john/homelab/jellyfin/cache:/cache
+      - /home/john/Media:/media
+    restart: always
+
+
+  navidrome:
+    image: deluan/navidrome:latest
+    container_name: navidrome
+    ports:
+      - "8033:4533"
+    user: 1000:1000
+    volumes:
+      - /home/john/homelab/navidrome:/data
+      - /home/john/Media/Music:/music:ro
+    restart: always
+
+
+  audiobookshelf:
+    image: ghcr.io/advplyr/audiobookshelf:latest
+    container_name: audiobookshelf
+    ports:
+      - "8084:80"
+    volumes:
+      - /home/john/Media/Audiobooks:/audiobooks
+      - /home/john/Media/Podcasts:/podcasts
+      - /home/john/homelab/audiobookshelf/abs-config:/config
+      - /home/john/homelab/audiobookshelf/abs-metadata:/metadata
+    environment:
+      - TZ=Europe/London
+
+
+  calibre-web:
+    image: linuxserver/calibre-web:latest
+    container_name: calibre-web
+    ports:
+      - "8083:8083"
+    environment:
+      - PUID=1000
+      - PGUI=1000
+      - TZ=Europe/London
+    volumes:
+      - /home/john/homelab/calibre/config:/config # Persistent storage for Calibre-Web's configuration
+      - /home/john/Media/Books:/books # Path to your eBook library
+    restart: always

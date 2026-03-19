@@ -1,0 +1,22 @@
+{
+  "Games": {
+"Sanuli":["https://sanuli.fi/","Finnish Wordle"],
+"Wordle":["https://www.nytimes.com/games/wordle/index.html","Standard Wordle"],
+"Quordle":["https://beta.quordle.com/#/","Wordle x4"],
+"Octordle":["https://octordle.org/","Wordle x8"],
+"Sedecordle":["https://www.sedecordle.com/?mode=daily","Wordle x16"],
+"Flaggle":["https://ducc.pythonanywhere.com/flaggle/","Flag Guessing"],
+"Worldle":["https://worldle.teuteuf.fr/","Map Guessing"],
+"Nerdle":["https://nerdlegame.com/","Number Guessing"],
+"Geo Hub":["https://www.geohub.gg/login","Old style Geoguessr"],
+"Hashtag":["https://everydaypuzzlesgame.com/g/hashtag/index.html","Rearrange letters pair wise in a #"],
+"WhenTaken":["https://whentaken.com/game","Guess when and where the photo's from"] },
+
+  "Sports": {
+"Formula e":["https://www.fiaformulae.com/en/video/boxset/485829/fulls-races-all-boxset","Electric single seater racing"],
+"Extreme e":["https://www.youtube.com/@ExtremeELive/playlists","Off road electric racing"],
+"Formula 1":["https://www.channel4.com/programmes/formula-1",""],
+"Rally X":["https://www.youtube.com/@RallyXTV/playlists","Rally Cross"],
+"BTCC old":["https://www.itv.com/btcc/articles/watch-more-race-action-from-the-btcc","Complete coverage 2015-2022"],
+"BTCC current":["https://btcc.net/calendar/","Calendar and additional links"]}
+}
